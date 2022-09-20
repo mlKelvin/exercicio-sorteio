@@ -1,16 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <comp-sorteio></comp-sorteio>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import compSorteio from './components/compSorteio.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+
+    components: {
+      compSorteio
+}
 }
 </script>
 
