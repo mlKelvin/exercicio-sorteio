@@ -4,8 +4,9 @@
         <input type="text" id="nomePessoa" v-model="nomePessoa" required>     <br/>
         <label for="generoPessoa">Gênero: </label>
         <input type="text" id="generoPessoa" v-model="generoPessoa" required> <br/>
-        <input type="button" value="Adicionar" @click="adicionarPessoa"/>         <br/><br/>  
-
+        <input type="button" value="Adicionar" @click="adicionarPessoa"/>         <br/>
+        <input type="button" value="Sortear Aleatorio" @click="sortPessoaAleatoria"/> <br/>
+        <label for="pessoaAleatoria"></label><br/><br/>
         <table>
         <tr>
             <th>Nome</th>
@@ -18,11 +19,17 @@
             <td>
                 {{item.Genero}}
             </td>
+            <td>
+                <a href="#" @click="excluir(p)">Excluir</a>
+            </td>
         </tr>
 
     </table>
         
     </div>
+    <footer>
+        
+    </footer>
 </template>
 
 <script>
@@ -32,24 +39,32 @@ export default {
             nomePessoa: '',
             generoPessoa: '',
             listaPessoas: [],
+            pessoaAleatoria: '',
         }
     },
 
     methods:{
+        sortPessoaAleatoria(){
+            this.pessoaAleatoria = this.listaPessoas.indexOf(2)
+        },
+
+        excluir(pessoa){
+            this.listaPessoas.splice(this.listaPessoas.indexOf(pessoa), 1)
+        },
+
         validar(){
-        const achou = this.listaPessoas.some((p) => p != (p.nomePessoa == this.nomePessoa) && (p.generoPessoa == this.generoPessoa));
-            if (achou) {
-                alert("achou")
+        const achou = this.listaPessoas.some((p) => p != p.nomePessoa == this.nomePessoa);
+        if (achou) {
+            alert("achou")
             return true
-            }
+        }
         return false
         },
+        
         adicionarPessoa(){
-            if(!(this.listaPessoas.includes(this.nomePessoa, ))){
-                if( (this.nomePessoa) && (this.generoPessoa) ){
-                    this.listaPessoas.push ({Nome: this.nomePessoa, Genero: this.generoPessoa})
-                }
-            }
+            if( (this.nomePessoa) && (this.generoPessoa) && (this.validar) ){
+                this.listaPessoas.push ({Nome: this.nomePessoa, Genero: this.generoPessoa})
+            }  
         }
     }
 }
