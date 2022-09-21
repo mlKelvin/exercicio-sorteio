@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <comp-sorteio></comp-sorteio>
   </div>
 </template>
